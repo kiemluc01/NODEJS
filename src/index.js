@@ -6,6 +6,12 @@ const morgan = require('morgan')
 const app = express()
 const port = 8000
 
+//middleware
+app.use(express.urlencoded({
+    extended: true
+}))
+app.use(express.json())
+
 // set url/file static
 app.use(express.static(__dirname + '/resources/public'))
     // app.console.log(__dirname)
@@ -24,6 +30,10 @@ app.set("views", path.join(__dirname, 'resources/views'))
 app.get('/', (req, res) => res.send('<h1>Nguyễn Kiêm Lực</h1>'))
 app.get('/Home', (req, res) => {
     res.render('home')
+})
+app.post('/home', (req, res) => {
+    console.log(req.body)
+    res.send('xong!')
 })
 
 
